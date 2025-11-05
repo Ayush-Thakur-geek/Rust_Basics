@@ -1,3 +1,5 @@
+// mod constants;
+
 static mut COUNTER: u32 = 0;
 fn main() {
     let value = 128_u32;
@@ -17,11 +19,28 @@ fn main() {
         println!("Not a valid Unicode scalar value");
     }
 
+    let _arr : [i32; 5] = [1, 2, 3, 4, 5];
+    //or
+    let arr2 = [1, 2, 3, 4, 5];
+
+    let _arr3 = [1, 2, 3_u8, 4, 5];
+
+    let arr4: [i32; 10] = [0; 10];
+    let arr5 = [5_u8; 4];
+    let arr6 = [0; 10]; //default is i32
+
+    println!("arr2 = {:?}", arr2);
+
     unsafe {
         let counter_ptr = std::ptr::addr_of_mut!(COUNTER);
         *counter_ptr += 1;
         println!("COUNTER {}", *counter_ptr);
     }
+
+    let mut value = 42;
+    let ref_of_value = &mut value;
+    println!("ref_of_value: {}", *ref_of_value + 1); //Manual derefrencing
+    println!("ref_of_value: {:p}", ref_of_value); //Automatic deferencing
 }
 //i8, u8, i16, u32, i32, i128, u128, isize, usize
 //f32, f64
