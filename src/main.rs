@@ -64,6 +64,70 @@ fn main() {
     }
 
     println!("sum: {}", sum);
+
+    let age = 10;
+
+    let message = if age < 18 {
+        println!("Message number is less than 18");
+        "you cannot vote"
+    } else {
+        println!("Message number is greater than 18");
+        "you can vote"
+    };
+
+    println!("{}", message);
+
+    let x: u8 = 1;
+    match x {
+        1 => {
+            println!("{}", x);
+            println!("One");
+        }
+        2 => println!("Two"),
+        _ => println!("Something else")
+    }
+
+    let point = (3, -7);
+
+    match point {
+        (_, y) if y < 0 => {
+            println!("The y is {}", y);
+        }
+
+        (0, 0) => {
+            println!("point is all zero");
+        }
+
+        _ => println!("Something else"),
+    }
+
+    let array = [1, 2, -3];
+
+    let invalid_array = match array {
+        [n, _, _] | [_, n, _]| [_, _, n]
+        if n < 0 => {
+            println!("The n is {}", n);
+            true
+        }
+
+        _ => false
+    };
+
+    //or use matches! macro
+
+    let invalid_array2 = matches!(array, [n, _, _] | [_, n, _]| [_, _, n] if n < 0);
+
+    println!("invalid_array: {}", invalid_array);
+
+    let coor = (4, 2);
+
+    if let (0, 0) = coor {
+        println!("coor is zero");
+    } else if let (_, y @ 1..4) = coor {
+        println!("y is within the range 1..4");
+    } else {
+        println!("coor is not zero");
+    }
 }
 //i8, u8, i16, u32, i32, i128, u128, isize, usize
 //f32, f64
