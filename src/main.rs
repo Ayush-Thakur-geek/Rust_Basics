@@ -41,6 +41,29 @@ fn main() {
     let ref_of_value = &mut value;
     println!("ref_of_value: {}", *ref_of_value + 1); //Manual derefrencing
     println!("ref_of_value: {:p}", ref_of_value); //Automatic deferencing
+
+    let mut num1 = 50; //mutable referent
+    // let ref_of_num1 = &num1; //immutable borrow
+    let mut ref_of_num2 = &mut num1;
+    let mut ref_of_num3 = &mut ref_of_num2;
+    ref_of_num3 = &mut &mut 10;
+    // println!("{}", ref_of_num3);
+    // println!("{}", ref_of_num2);
+
+    let mut arr = [1, 2, 3, 4];
+    let s1 = &mut arr[1..=3]; //add '=' for making it inclusive
+    s1[1] = 21;
+    println!("{:?}", arr);
+
+    let arr2 = [10, 23, 34, 564, 221];
+    let slice = &arr2[2..];
+    let mut sum = 0;
+
+    for i in slice {
+        sum += *i;
+    }
+
+    println!("sum: {}", sum);
 }
 //i8, u8, i16, u32, i32, i128, u128, isize, usize
 //f32, f64
